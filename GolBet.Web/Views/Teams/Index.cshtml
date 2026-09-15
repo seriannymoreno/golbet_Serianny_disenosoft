@@ -1,0 +1,35 @@
+﻿@model IEnumerable<GolBet.Services.DTOs.TeamDto>
+
+@{
+    ViewData["Title"] = "Equipos";
+}
+
+<h2 class="mb-4">🛡️ Equipos</h2>
+
+<table class="table table-hover align-middle">
+    <thead>
+        <tr>
+            <th>Escudo</th>
+            <th>Nombre</th>
+            <th>Ciudad</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var team in Model)
+        {
+            <tr>
+                <td>
+                    <img src="@(team.CrestUrl ?? "https://placehold.co/40x40?text=FC")"
+                         alt="@team.Name"
+                         width="40"
+                         height="40" />
+                </td>
+
+                <td>@team.Name</td>
+
+                <td>@team.City</td>
+            </tr>
+        }
+    </tbody>
+</table>
