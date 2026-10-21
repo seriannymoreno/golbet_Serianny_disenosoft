@@ -1,8 +1,10 @@
 ﻿// GolBet.Web/Controllers/MatchesController.cs
 // (agregar; requiere inyectar ITeamService en el constructor)
 using GolBet.Entities.Enums;
+using GolBet.Repositories.Data;
 using GolBet.Services.DTOs;
 using GolBet.Services.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
@@ -39,6 +41,7 @@ namespace GolBet.Web.Controllers
         }
 
         // GET: Matches/Create
+        [Authorize(Roles = DbSeeder.AdminRole)]
         public async Task<IActionResult> Create()
         {
             await LoadTeamsAsync();
@@ -46,6 +49,7 @@ namespace GolBet.Web.Controllers
         }
 
         // POST: Matches/Create
+        [Authorize(Roles = DbSeeder.AdminRole)]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(MatchFormDto dto)
@@ -71,6 +75,7 @@ namespace GolBet.Web.Controllers
         }
 
         // GET: Matches/Edit/5
+        [Authorize(Roles = DbSeeder.AdminRole)]
         public async Task<IActionResult> Edit(int id)
         {
             var dto = await _matchService.GetForEditAsync(id);
@@ -83,6 +88,7 @@ namespace GolBet.Web.Controllers
         }
 
         // POST: Matches/Edit
+        [Authorize(Roles = DbSeeder.AdminRole)]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(MatchFormDto dto)
@@ -112,6 +118,7 @@ namespace GolBet.Web.Controllers
         }
 
         // POST: Matches/Deactivate/5
+        [Authorize(Roles = DbSeeder.AdminRole)]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Deactivate(int id)
