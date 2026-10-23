@@ -53,6 +53,9 @@ builder.Services.AddScoped<IMatchService, MatchService>();
 
 builder.Services.AddScoped<ITeamService, TeamService>();
 
+builder.Services.AddScoped<IBetRepository, BetRepository>();
+builder.Services.AddScoped<IBetService, BetService>();
+
 var app = builder.Build();
 
 // Seed the database on startup

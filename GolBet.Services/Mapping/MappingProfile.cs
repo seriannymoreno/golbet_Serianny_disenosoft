@@ -17,6 +17,9 @@ public class MappingProfile : Profile
         CreateMap<Match, MatchDetailDto>()
             .ForMember(dto => dto.TotalBets,
                 options => options.MapFrom(match => match.Bets.Count));
+        CreateMap<Bet, BetDto>()
+            .ForMember(dto => dto.PotentialPayout,
+               options => options.MapFrom(bet => bet.Amount * bet.OddsAtPlacement));
 
         // Mapeos para formularios del Módulo 6
         CreateMap<TeamFormDto, Team>().ReverseMap();
