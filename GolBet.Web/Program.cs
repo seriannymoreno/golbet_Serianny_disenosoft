@@ -10,10 +10,12 @@ using GolBet.Entities;
 using Microsoft.AspNetCore.Identity;
 
 var culture = new CultureInfo("es-CO");
+// Dates in Spanish; numbers neutral so model binding reads "2.5" correctly
+culture.NumberFormat = (NumberFormatInfo)CultureInfo.InvariantCulture.NumberFormat.Clone();
+culture.NumberFormat.NumberGroupSeparator = "";   // "2,5" fails loudly, never binds as 25
+
 CultureInfo.DefaultThreadCurrentCulture = culture;
 CultureInfo.DefaultThreadCurrentUICulture = culture;
-
-
 
 var builder = WebApplication.CreateBuilder(args);
 
